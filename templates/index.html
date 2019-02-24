@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登陆界面</title>
+	<link rel="stylesheet" href="/static/css/index.css">
+	<script>
+		function changeCheckCode(){
+			var img = document.getElementById("img");
+			img.src = img.src+'?';
+    }
+	</script>
+
+</head>
+<body>
+	<div class="container">
+		<!-- 主体内容 （登陆界面）-->
+		<div class="main">
+			<div class="sideright">
+				<div class="index">
+					<form action="/securety/login/" method="post">
+                        {% csrf_token %}
+						<p class="headline">用户登陆</p>
+
+						<p class="astyle">用户名：</p>
+						<input type="text" name="username" placeholder="请输入用户名">
+
+						<p class="astyle">密码：</p>
+						<input type="password" name="password" placeholder="请输入密码">
+
+                        <p class="msg">{{msg.0}}</p>
+
+                        <br>
+                         <p  class="dstyle"><img src="/securety/get_check_code/" id="img" onclick="changeCheckCode()">看不清？点击图片</p>
+
+						<p class="astyle">验证码：</p>
+                        <input type="text" name="checkcode" placeholder="请输入验证码">
+                        <p class="msg">{{msg.1}}</p>
+
+						<input type="submit" value="登陆" name="login" >
+						</br>
+						<p class="bstyle"><input type="checkbox" name="rempas" />  记住密码</p>
+						<p class="cstyle">忘记密码</p>
+						</br></br>
+						<p class="cstyle">没有账号？<a href="/securety/register/">立即注册</a></p>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
